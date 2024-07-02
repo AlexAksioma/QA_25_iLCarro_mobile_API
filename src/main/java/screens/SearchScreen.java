@@ -26,6 +26,10 @@ public class SearchScreen extends BaseScreen{
         btnRegistration.click();
         return new RegistrationScreen(driver);
     }
+    public LoginScreen clickBtnLogin(){
+        btnLogin.click();
+        return new LoginScreen(driver);
+    }
 
     public boolean isElementPresent_popUpMessageSuccess(String text){
         return textInElementPresent(popUpMessageSuccess, text, 5);
