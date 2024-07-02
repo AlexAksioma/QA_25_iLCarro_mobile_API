@@ -33,4 +33,10 @@ public class BaseScreen {
             return false;
         }
     }
+
+    public int[] getScreenSize(){
+        int height = driver.manage().window().getSize().getHeight();
+        int width = driver.manage().window().getSize().getWidth();
+        return new int[]{height, width};
+    }
 }
