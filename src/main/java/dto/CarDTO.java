@@ -17,7 +17,6 @@ public class CarDTO {
     private String model; //": "string",
     private String year; //": "string",
     private String fuel; //": "string",
-    //Fuel fuel;
     private int seats; //": 0,
     private String carClass; //": "string",
     private double pricePerDay;//": 0,

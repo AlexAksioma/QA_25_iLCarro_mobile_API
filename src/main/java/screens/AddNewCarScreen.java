@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 public class AddNewCarScreen extends BaseScreen{
@@ -26,6 +27,16 @@ public class AddNewCarScreen extends BaseScreen{
     MobileElement fieldPrice;
     @FindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/editCarClass']")
     MobileElement fieldCarClass;
+    @FindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/text1']")
+    MobileElement fieldFuel;
+    @FindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/editYear']")
+    MobileElement fieldYear;
+    @FindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/editSeats']")
+    MobileElement fieldSeats;
+    @FindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/editAbout']")
+    MobileElement fieldAboutCar;
+    @FindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/addCarBtn']")
+    MobileElement btnAddCar;
 
     public AddNewCarScreen typeAddNewCarForm(CarDTO car){
         fieldSerialNumber.sendKeys(car.getSerialNumber());
@@ -40,6 +51,31 @@ public class AddNewCarScreen extends BaseScreen{
                 .moveTo(PointOption.point(widthScreen/100, heightScreen/4))
                 .release().perform();
 
+        //fieldFuel.sendKeys(car.getFuel());
+        typeFuel(car.getFuel());
+
+        fieldYear.sendKeys(car.getYear());
+        fieldSeats.sendKeys(""+car.getSeats());
+        fieldAboutCar.sendKeys(car.getAbout());
+
         return this;
     }
+
+    private void typeFuel(String fuel) {
+        fieldFuel.click();
+        pause(3);
+        MobileElement element = driver.findElement(By.xpath(fuel));
+        element.click();
+    }
+    public MyCarsScreen clickBtnAddCarPositive(){
+        btnAddCar.click();
+        return new MyCarsScreen(driver);
+    }
+
+    public ErrorScreen clickBtnAddCarNegative() {
+        btnAddCar.click();
+        return new ErrorScreen(driver);
+    }
+
+
 }
